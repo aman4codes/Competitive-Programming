@@ -16,8 +16,8 @@ int main() {
         bool found = false;
 
         for (int j = 0; j < n; j++) {
-            int gcd_a = arr[j]; // group A: one element
-            int gcd_b = 0;      // group B: rest
+            int gcd_a = arr[j];
+            int gcd_b = 0;     
 
             for (int k = 0; k < n; k++) {
                 if (k != j)
