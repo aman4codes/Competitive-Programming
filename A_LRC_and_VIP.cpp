@@ -21,7 +21,7 @@ int main() {
 
             for (int k = 0; k < n; k++) {
                 if (k != j)
-                    gcd_b = __gcd(gcd_b, arr[k]);
+                gcd_b = __gcd(gcd_b, arr[k]);
             }
 
             if (gcd_a != gcd_b) {
