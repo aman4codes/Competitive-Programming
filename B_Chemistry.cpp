@@ -18,7 +18,7 @@ int main()
         }
 
         int odd_count = 0;
-        for (auto &pair : freq)
+        for (auto &pair : freq)  
         {
             if (pair.second % 2 != 0)
                 odd_count++;
