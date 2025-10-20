@@ -2,9 +2,11 @@
 #include <algorithm>
 using namespace std;
 
-int main() {
+int main()
+{
     int x[4];
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 4; i++)
+    {
         cin >> x[i];
     }
 

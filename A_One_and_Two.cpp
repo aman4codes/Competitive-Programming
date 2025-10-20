@@ -7,52 +7,42 @@ int main()
     cin >> t;
     while (t--)
     {
-        int n,i,j;
+        int n;
         cin >> n;
+        int count_2 = 0;
 
-        int count1 = 0;
-        int count2 = 0;
-
-        bool flag=true;
         vector<int> arr(n);
         for (int i = 0; i < n; i++)
         {
             cin >> arr[i];
-            if (arr[i] == 1)
+            if (arr[i] == 2)
             {
-                count1++;
-            }
-            else
-            {
-                count2++;
+                count_2++;
             }
         }
-        int check=0;
-        if (count2 % 2 == 0)
+
+        if (count_2 == 0)
         {
-            for ( j = 0; j < n; j++)
-            {
-                if(arr[j]==2)
-                {
-                    if(check<(count2/2) && flag)
-                    {
-                        check++;
-                    }
-                    else
-                    {
-                        flag=false;
-                    }
-                }
-            }
+            cout << 1 << endl;
+        }
+        else if (count_2 % 2 != 0)
+        {
+            cout << -1 << endl;
         }
         else
         {
-            cout<<"-1"<<endl;
-        }
-
-        if(!flag)
-        {
-            cout<<j<<endl;
+            count_2/=2;
+            for(int j=0;j<n;j++)
+            {
+                if(arr[j]==2)
+                {
+                    count_2--;
+                    if(count_2==0)
+                    {
+                        cout<<j+1<<endl;
+                    }
+                }
+            }
         }
     }
 }

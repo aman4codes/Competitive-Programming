@@ -3,6 +3,9 @@ using namespace std;
 
 int main()
 {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
     int t;
     cin >> t;
     while (t--)
@@ -10,35 +13,28 @@ int main()
         int n, k;
         cin >> n >> k;
 
-        vector<int> arr;
+        vector<pair<int, int>> monsters;
+
+
         for (int i = 0; i < n; i++)
         {
-            int x;
+            long long x;
             cin >> x;
-            x = x % k;
-            // if (!x) x = k;
-            arr.push_back(x);
+
+            int rem = x % k;
+            if (rem == 0)
+                rem = k;
+
+            monsters.push_back({rem, i + 1});
         }
 
-        vector<pair<int, int>> arr_pair;
+        sort(monsters.begin(), monsters.end(), [&](auto &a, auto &b)
+             {
+            if (a.first == b.first) return a.second < b.second;
+            return a.first > b.first; });
 
-        for (int j = 0; j < n; j++)
-        {
-            arr_pair.push_back({j, arr[j]});
-        }
-
-        sort(arr_pair.begin(), arr_pair.end(), [](pair<int, int> a, pair<int, int> b)
-            {
-                if (a.second != b.second)
-                    return a.second < b.second;
-                else
-                    return a.first < b.first; 
-            });
-
-        for (auto p : arr_pair)
-        {
-            cout << p.first + 1 << " ";
-        }
-        cout << endl;
+        for (auto &p : monsters)
+            cout << p.second << " ";
+        cout << "\n";
     }
 }

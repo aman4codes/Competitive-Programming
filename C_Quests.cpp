@@ -6,6 +6,7 @@ void solve()
     int n, k;
     cin >> n >> k;
     vector<int> a_i(n), b_i(n);
+
     for (int i = 0; i < n; i++)
         cin >> a_i[i];
     for (int i = 0; i < n; i++)
@@ -15,18 +16,21 @@ void solve()
     for (int i = 1; i <= n; i++)
         pre[i] = pre[i - 1] + a_i[i - 1];
 
+    int idx_to_work = min(k, n);
     int b_i_max = INT_MIN;
     long long ans_sum = 0;
-    int idx_to_work = min(k, n);
 
     for (int i = 1; i <= idx_to_work; i++)
     {
         b_i_max = max(b_i_max, b_i[i - 1]);
-        long long trial_ans = pre[i] + 1LL * (k - i) * b_i_max;
+        long long trial_ans = pre[i] + 1LL * (idx_to_work - i) * b_i_max;
         ans_sum = max(ans_sum, trial_ans);
     }
 
-    cout << ans_sum << endl;
+    if (k > idx_to_work)
+        ans_sum += 1LL * (k - idx_to_work) * b_i_max;
+
+    cout << ans_sum << "\n";
 }
 
 int main()
@@ -38,5 +42,6 @@ int main()
     cin >> t;
     while (t--)
         solve();
+
     return 0;
 }
