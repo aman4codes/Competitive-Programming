@@ -16,27 +16,28 @@ void solve()
         cin >> people_share[j].second;
     }
 
-    long long total_cost = 1LL * n * p;
-    long long actual_cost = p;
     sort(people_share.begin(), people_share.end(),
          [](auto &a, auto &b)
          {
              return a.second < b.second;
          });
 
-    long long covered = 1;
-    long long l = 0;
-    while (covered < n && l < n)
-    {
-        long long need = n - covered;
-        long long take = min(1LL * people_share[l].first, need);
+    long long total_cost = p;
+    long long rem = n - 1;
 
-        actual_cost += take * 1LL * people_share[l].second;
-        covered += take;
-        l++;
+    for (int i = 0; i < n && rem > 0; i++)
+    {
+        long long can_share = people_share[i].first;
+        long long cost_per_share = people_share[i].second;
+
+        long long take = min(can_share, rem);
+        long long effective_cost = min(cost_per_share, p);
+
+        total_cost += take * effective_cost;
+        rem -= take;
     }
 
-    cout << min(actual_cost, total_cost) << "\n";
+    cout << total_cost << endl;
 }
 
 int main()
@@ -44,7 +45,7 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    int t;
+    long long t;
     cin >> t;
     while (t--)
     {
